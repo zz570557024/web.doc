@@ -1,9 +1,9 @@
 # 《前端.doc》
-~~前端学习笔记~~
-前端技术速成
+* ~~前端学习笔记~~
+* 前端技术速成
 
 ### PART1
-* [JS基础相关](./jsStandard.md)
+* [JS基础相关](./context/part1/jsStandard.md)
 * [ES6相关]
 * [DOM相关]
 * [webSocket]
@@ -26,7 +26,7 @@
 
 ### PART4
 * [前端架构]
+* [前端文档/工具/库链接](./context/part4/js_tool_link.md)
 * [微信小程序]
 * [SEO搜索引擎优化]
-* [前端工具/库链接]
 * [其它]
