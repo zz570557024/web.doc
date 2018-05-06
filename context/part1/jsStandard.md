@@ -27,7 +27,7 @@ Ocaml是静态隐式类型
 静态显式类型 ：Java/C
 静态隐式类型 ：Ocaml, Haskell
 
-![语言类型](./images/pic1.png)
+![语言类型](./../images/pic1.png)
 
 #### 相关概念
 > Program Errors

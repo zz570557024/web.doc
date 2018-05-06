@@ -6,7 +6,7 @@
 * [JS基础相关](./context/part1/jsStandard.md)
 	* JS是一种弱类型动态语言
 	* JS语句
-	* JS表达式(expression)
+	* JS表达式
 	* JSON对象
 	* console对象
 	* 命令行 API
@@ -33,15 +33,63 @@
 
 ### PART3
 * [JS插件使用]
-* [npm]
+* [npm](./context/part3/npm.md)
+	* 基础
+	* 开发NPM
 * [react]
 * [mpvue]
 * [网页模板引擎]
 * [JS GAME]
 
 ### PART4
-* [前端架构]
+* [前端架构](./context/part4/webFramework.md)
+	* MVC
+	* MVP
+	* MVVM
 * [前端文档/工具链接](./context/part4/js_tool_link.md)
+	<!-- * JS基础
+		* ES5
+		* ES6
+		* JS规范
+		* JsStory
+	* JS设计原则/模式
+	* 前端基础
+		* GIT
+		* 网络协议
+	* 前端库/框架
+		* Angular
+		* React
+		* Vue
+	* 代码检测
+	* 服务端Node.js
+		* Express
+		* Koa2
+	* CSS相关
+		* PostCss
+	* 微信小程序开发
+		* 官方文档
+		* 小程序框架
+			* WEPY
+			* mpvue
+		* 小程序UI
+		* 其他
+	* Hybrid开发
+		* Weex
+		* Ionic
+	* 工具/插件
+		* npm
+		* Babel
+		* webpack
+		* TS
+		* CreateJS
+		* others
+	* 工作面试
+	* 主页博客
+	* 拓展学习
+		* Python
+		* Markdown
+		* 自然语言机器学习
+		* 其它 -->
 * [微信小程序]
 * [SEO搜索引擎优化]
 * [其它]

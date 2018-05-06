@@ -177,7 +177,7 @@
 * [Python/常用的正则表达式.md at master · TwoWater/Python · GitHub](https://github.com/TwoWater/Python/blob/master/python14/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 * [Python/Python博客网站资源.md at master · TwoWater/Python · GitHub](https://github.com/TwoWater/Python/blob/master/Res/Python%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%B5%84%E6%BA%90.md)
 
-#### Markdown学习
+#### Markdown
 * [Markdown 入门](https://zhuanlan.zhihu.com/p/32265583)
 * [关于 Markdown 的一些奇技淫巧](https://zhuanlan.zhihu.com/p/28987530)
 
