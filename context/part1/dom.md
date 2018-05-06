@@ -1,6 +1,7 @@
-#DOM/BOM相关
+# DOM/BOM相关
 
 ## DOM
+
 * DOM是JavaScript操作网页的接口，全称为“文档对象模型”（Document Object Model）。它的作用是将网页转为一个JavaScript对象，从而可以用脚本进行各种操作（比如增删内容）。
 浏览器会根据DOM模型，将结构化文档（比如HTML和XML）解析成一系列的节点，再由这些节点组成一个树状结构（DOM Tree）。
 	* Document：整个文档树的顶层节点
@@ -10,33 +11,41 @@
 	* Text：标签之间或标签包含的文本
 	* Comment：注释
 	* DocumentFragment：文档的片段
+
 > * 父节点关系（parentNode）：直接的那个上级节点
 > * 子节点关系（childNodes）：直接的下级节点
 > * 同级节点关系（sibling）：拥有同一个父节点的节点
+
 * DOM提供操作接口，用来获取三种关系的节点。其中，子节点接口包括firstChild（第一个子节点）和lastChild（最后一个子节点）等属性，同级节点接口包括nextSibling（紧邻在后的那个同级节点）和previousSibling（紧邻在前的那个同级节点）属性。
 
 ****************************************************************************************************
 ****************************************************************************************************
 
 ### Node对象
+
 #### Node.nodeName，Node.nodeType
+
 * nodeName属性返回节点的名称，nodeType属性返回节点类型的常数值。
 * Node.nodeValue属性返回一个字符串，表示当前节点本身的文本值，该属性可读写。由于只有Text节点、Comment节点、XML文档的CDATA节点有文本值，因此只有这三类节点的nodeValue可以返回结果，其他类型的节点一律返回null
 
 #### Node.textContent
+
 * Node.textContent属性返回当前节点和它的所有后代节点的文本内容。
 * Node.baseURI属性返回一个字符串，表示当前网页的绝对路径。如果无法取到这个值，则返回null。浏览器根据这个属性，计算网页上的相对路径的URL。该属性为只读。
 * 该属性的值一般由当前网址的URL（即window.location属性）决定，但是可以使用HTML的<base>标签，改变该属性的值。
 
 #### Node.parentNode
+
 * parentNode属性返回当前节点的父节点。对于一个节点来说，它的父节点只可能是三种类型：element节点、document节点和documentfragment节点。
 
 #### Node.parentElement
+
 * parentElement属性返回当前节点的父Element节点。如果当前节点没有父节点，或者父节点类型不是Element节点，则返回null。
 * 在IE浏览器中，只有Element节点才有该属性，其他浏览器则是所有类型的节点都有该属性。
 firstChild属性返回当前节点的第一个子节点，如果当前节点没有子节点，则返回null（注意，不是undefined）
 
 #### 节点对象的方法
+
 * Node.appendChild方法接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。
 * Node.hasChildNodes方法返回一个布尔值，表示当前节点是否有子节点。
 - Node.insertBefore方法用于将某个节点插入当前节点的指定位置。它接受两个参数，第一个参数是所要插入的节点，第二个参数是当前节点的一个子节点，新的节点将插在这个节点的前面。该方法返回被插入的新节点
@@ -51,9 +60,11 @@ ES6新增的for...of循环，也可以正确遍历NodeList实例对象。
 HTMLCollection实例对象与NodeList实例对象类似，也是节点的集合，返回一个类似数组的对象。document.links、docuement.forms、document.images等属性，返回的都是HTMLCollection实例对象。
 
 #### ParentNode接口
+
 * ParentNode接口用于获取Element子节点。Element节点、Document节点和DocumentFragment节点，部署了ParentNode接口。
 
 #### ChildNode接口
+
 * ChildNode接口用于处理子节点（包含但不限于Element子节点）。Element节点、DocumentType节点和CharacterData接口，部署了ChildNode接口。
 * 方法： remove() before() after() replaceWith()
 
@@ -61,6 +72,7 @@ HTMLCollection实例对象与NodeList实例对象类似，也是节点的集合�
 ****************************************************************************************************
 
 ### Document对象
+
 * document节点是文档的根节点，每张网页都有自己的document节点。window.document属性就指向这个节点。只要浏览器开始载入HTML文档，这个节点对象就存在了，可以直接调用。
 * 对于正常的网页，直接使用document或window.document。对于iframe载入的网页，使用iframe节点的contentDocument属性。
 * 对Ajax操作返回的文档，使用XMLHttpRequest对象的responseXML属性。
@@ -123,6 +135,7 @@ newDiv.appendChild(newContent)`
 ****************************************************************************************************
 
 ### 盒状模型相关属性
+
 * Element.clientHeight属性返回元素节点可见部分的高度，Element.clientWidth属性返回元素节点可见部分的宽度。所谓“可见部分”，指的是不包括溢出（overflow）的大小，只返回该元素在容器中占据的大小，对于有滚动条的元素来说，它们等于滚动条围起来的区域大小。这两个属性的值包括Padding、但不包括滚动条、边框和Margin，单位为像素。
 * Element.clientLeft属性等于元素节点左边框（left border）的宽度，Element.clientTop属性等于网页元素顶部边框的宽度，单位为像素。
 * Element.scrollHeight属性返回某个网页元素的总高度，Element.scrollWidth属性返回总宽度，可以理解成元素在垂直和水平两个方向上可以滚动的距离。
@@ -161,18 +174,22 @@ newDiv.appendChild(newContent)`
 ## BOM
 
 * **浏览器的核心是两部分：渲染引擎和JavaScript解释器（又称JavaScript引擎）。**
+
 > Firefox：Gecko引擎
 > Safari：WebKit引擎
 > Chrome：Blink引擎
 > IE: Trident引擎
 > Edge: EdgeHTML引擎
+
 * **渲染引擎处理网页，通常分成四个阶段：**
+
 > * 解析代码：HTML代码解析为DOM，CSS代码解析为CSSOM（CSS Object Model）
 > * 对象合成：将DOM和CSSOM合成一棵渲染树（render tree）
 > * 布局：计算出渲染树的布局（layout）
 > * 绘制：将渲染树绘制到屏幕
 
 #### 重流和重绘
+
 * 渲染树转换为网页布局，称为“布局流”（flow）；布局显示到页面的这个过程，称为“绘制”（paint）。它们都具有阻塞效应，并且会耗费很多时间和计算资源。
 * 页面生成以后，脚本操作和样式表操作，都会触发重流（reflow）和重绘（repaint）。用户的互动，也会触发，比如设置了鼠标悬停（a:hover）效果、页面滚动、在输入框中输入文本、改变窗口大小等等
 * 读取DOM或者写入DOM，尽量写在一起，不要混杂
@@ -187,6 +204,7 @@ newDiv.appendChild(newContent)`
 使用“字节码解释器”（bytecode interpreter），将字节码转为机器码。
 * 逐行解释将字节码转为机器码，是很低效的。为了提高运行速度，现代浏览器改为采用“即时编译”（Just In Time compiler，缩写JIT），即字节码只在运行时编译，用到哪一行就编译哪一行，并且把编译结果缓存（inline cache）。
 * 字节码不能直接运行，而是运行在一个虚拟机（Virtual Machine）之上，*一般也把虚拟机称为JavaScript引擎。*
+
 > Chakra(Microsoft Internet Explorer)
 > Nitro/JavaScript Core (Safari)
 > Carakan (Opera)
@@ -197,11 +215,13 @@ newDiv.appendChild(newContent)`
 ****************************************************************************************************
 
 ### History 对象
+
 * history.go(0)相当于刷新当前页面。
 `window.history.back()`
 * 返回上一页时，页面通常是从浏览器缓存之中加载，而不是重新要求服务器发送新的网页。
 * pushState方法不会触发页面刷新，只是导致history对象发生变化，地址栏会有反应。
 * **URLSearchParams有以下方法，用来操作某个参数。**
+
 > has()：返回一个布尔值，表示是否具有某个参数
 > get()：返回指定参数的第一个值
 > getAll()：返回一个数组，成员是指定参数的所有值
@@ -217,25 +237,32 @@ newDiv.appendChild(newContent)`
 ****************************************************************************************************
 
 ### Cookie
+
 * Cookie 是服务器保存在浏览器的一小段文本信息，每个 Cookie 的大小一般不能超过4KB。浏览器每次向服务器发出请求，就会自动附上这段信息。
+
 > Cookie的名字
 > Cookie的值
 > 到期时间
 > 所属域名（默认是当前域名）
 > 生效的路径（默认是当前网址）
+
 * 浏览器可以设置不接受 Cookie，也可以设置不向服务器发送 Cookie。
 
 #### expires属性
+
 * 如果不设置该属性，或者设为null，Cookie只在当前会话（session）有效，浏览器窗口一旦关闭，当前Session结束，该Cookie就会被删除。
 
 #### secure 属性
+
 * secure属性用来指定Cookie只能在加密协议HTTPS下发送到服务器。
 * 该属性只是一个开关，不需要指定值。如果通信是HTTPS协议，该开关自动打开。
 
 #### max-age
+
 * max-age属性用来指定Cookie有效期，比如60 * 60 * 24 * 365（即一年31536e3秒）。
 
 #### HttpOnly
+
 * HttpOnly属性用于设置该Cookie不能被JavaScript读取
 只要有一个属性不同，就会生成一个全新的Cookie，而不是替换掉原来那个Cookie。
 * **删除一个Cookie的简便方法，就是设置expires属性等于0，或者等于一个过去的日期。**
@@ -243,27 +270,35 @@ newDiv.appendChild(newContent)`
 * 名为fontSize的Cookie的值为空，过期时间设为1970年1月1月零点，就等同于删除了这个Cookie。
 
 #### 同源政策
+
 * 浏览器的同源政策规定，两个网址只要域名相同和端口相同，就可以共享Cookie。
 * 这个API的作用是，使得网页可以在浏览器端储存数据。它分成两类：**sessionStorage**和**localStorage**。
 * sessionStorage保存的数据用于浏览器的一次会话，当会话结束（通常是该窗口关闭），数据被清空；localStorage保存的数据长期存在，下一次访问该网站的时候，网页可以直接读取以前保存的数据。除了保存期限的长短不同，这两个对象的属性和方法完全一样。
 * A 网页设置的 Cookie，B 网页不能打开，除非这两个网页“同源”。所谓“同源”指的是”三个相同“。
+
 > * 协议相同
 > * 域名相同
 > * 端口相同
+
 * 同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。
 * 如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制。
 * “同源政策”是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。
 
 #### 限制范围
+
 * 随着互联网的发展，“同源政策”越来越严格。目前，如果非同源，共有三种行为受到限制。
+
 > Cookie、LocalStorage 和 IndexedDB 无法读取。
 > DOM 无法获得。
 > AJAX 请求无效（可以发送，但浏览器会拒绝接受响应）。
+
 * 同源政策规定，AJAX请求只能发给同源的网址，否则就报错。
 * 除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。
+
 > JSONP
 > WebSocket
 > CORS
+
 `它的基本思想是，网页通过添加一个<script>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。`
 * WebSocket是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。
 * 有一个字段是Origin，表示该请求的请求源（origin），即发自哪个域名。正是因为有了Origin这个字段，所以WebSocket才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。如果该域名在白名单内，服务器就会做出如下回应。
@@ -277,21 +312,27 @@ newDiv.appendChild(newContent)`
 ****************************************************************************************************
 
 ### AJAX
+
 * 浏览器与服务器之间，采用HTTP协议通信。用户在浏览器地址栏键入一个网址，或者通过网页表单向服务器提交内容，这时浏览器就会向服务器发出HTTP请求。
 * 1999年，微软公司发布IE浏览器5.0版，第一次引入新功能：允许JavaScript脚本向服务器发起HTTP请求。2005年2月，AJAX这个词第一次正式提出，指围绕这个功能进行开发的一整套做法。从此，AJAX成为脚本发起HTTP通信的代名词，W3C也在2006年发布了它的国际标准。
+
 > 创建AJAX对象
 > 发出HTTP请求
 > 接收服务器传回的数据
 > 更新网页数据
+
 * AJAX通过原生的XMLHttpRequest对象发出HTTP请求，得到服务器返回的数据后，再进行处理。
 
 #### XMLHttpRequest实例的属性
+
 * readyState是一个只读属性，用一个整数和对应的常量，表示XMLHttpRequest请求当前所处的状态。
+
 > 0，对应常量UNSENT，表示XMLHttpRequest实例已经生成，但是open()方法还没有被调用。
 > 1，对应常量OPENED，表示send()方法还没有被调用，仍然可以使用setRequestHeader()，设定HTTP请求的头信息。
 > 2，对应常量HEADERS_RECEIVED，表示send()方法已经执行，并且头信息和状态码已经收到。
 > 3，对应常量LOADING，表示正在接收服务器传来的body部分的数据，如果responseType属性是text或者空字符串，responseText就会包含已经收到的部分信息。
 > 4，对应常量DONE，表示服务器数据已经完全接收，或者本次接收已经失败了。
+
 * **状态码**
 
 | Num           | state              | 状态     |
@@ -308,11 +349,13 @@ newDiv.appendChild(newContent)`
 
 * **timeout**属性等于一个整数，表示多少毫秒后，如果请求仍然没有得到结果，就会自动终止。如果该属性等于0，就表示没有时间限制。
 * XMLHttpRequest对象的open方法用于指定发送HTTP请求的参数，它的使用格式如下，一共可以接受五个参数。
+
 > method：表示HTTP动词，比如“GET”、“POST”、“PUT”和“DELETE”。
 > url: 表示请求发送的网址。
 > async: 格式为布尔值，默认为true，表示请求是否为异步。如果设为false，则send()方法只有等到收到服务器返回的结果，才会有返回值。
 > user：表示用于认证的用户名，默认为空字符串。
 > password：表示用于认证的密码，默认为空字符串。
+
 * 所有XMLHttpRequest的监听事件，都必须在send()方法调用之前设定。
 * FormData类型可以用于构造表单数据，然后使用send方法发送。它的效果与点击下面表单的submit按钮是一样的。
 * FormData对象还可以对现有表单添加数据，这为我们操作表单提供了极大的灵活性。
@@ -320,11 +363,13 @@ newDiv.appendChild(newContent)`
 * FormData也可以加入JavaScript生成的文件
 
 #### setRequestHeader()
+
 * setRequestHeader方法用于设置HTTP头信息。该方法必须在open()之后、send()之前调用。如果该方法多次调用，设定同一个字段，则每一次调用的值会被合并成一个单一的值发送。
 * 该方法用来指定服务器返回数据的MIME类型。该方法必须在send()之前调用。
 * 上传文件时，XMLHTTPRequest对象的upload属性有一个progress，会不断返回上传的进度。假定网页上有一个progress元素。
 
 #### 文件上传
+
 `HTML网页的<form>元素能够以四种格式，向服务器发送数据。`
 > 使用POST方法，将enctype属性设为application/x-www-form-urlencoded，这是默认方法。
 > 使用POST方法，将enctype属性设为text/plain
