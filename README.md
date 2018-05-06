@@ -5,14 +5,22 @@
 ### PART1
 * [JS基础相关](./context/part1/jsStandard.md)
 	* JS是一种弱类型动态语言
-	* javascript语句
-	* javascript表达式(expression)
+	* JS语句
+	* JS表达式(expression)
 	* JSON对象
 	* console对象
 	* 命令行 API
 	* 正则表达式
 * [ES6相关]
-* [DOM相关]
+* [DOM/BOM相关](./context/part1/dom.md)
+	* DOM
+		* Node对象
+		* Document对象
+		* 盒状模型相关属性
+	* BOM
+		* History 对象
+		* Cookie
+		* AJAX
 * [webSocket]
 * [Node.js]
 * [JS高并发]
