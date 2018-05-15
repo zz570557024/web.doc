@@ -11,7 +11,46 @@
 	* console对象
 	* 命令行 API
 	* 正则表达式
-* [ES6相关]
+* [ES6相关](./context/part1/es6.md)
+	* 变量
+		* Let & Var
+		* 暂时性死区
+		* 块级作用域
+		* const命令
+		* ...
+	* 数组的扩展
+	* 扩展运算符的应用
+	* 对象的扩展
+		* 属性名表达式
+		* `__proto__`属性
+		* super 关键字
+		* Null 传导运算符
+		* 属性的遍历
+	* 对象的扩展运算符
+		* 解构赋值
+		* Symbol
+		* 作为属性名的 Symbol
+		* 实例：消除魔术字符串
+	* Set & Map
+		* Set
+		* Map
+	* Proxy
+		* Proxy 实例的方法
+		* get()
+		* set()
+	* Promise 的含义
+	* Iterator（遍历器）的概念
+		* Generator 函数
+	* Generator 与协程
+		* 协程与子例程的差异
+		* 协程与普通线程的差异
+		* 异步操作的同步化表达
+		* 控制流管理
+	* 类的实例对象
+	* 装饰器
+	* Module 的语法
+	* Module 的加载实现
+	* 读懂 ECMAScript 规格
 * [DOM/BOM相关](./context/part1/dom.md)
 	* DOM
 		* Node对象
