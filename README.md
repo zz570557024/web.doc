@@ -62,13 +62,32 @@
 		* AJAX
 * [webSocket]
 * [Node.js]
-* [JS高并发]
+* [前端高并发](./context/part1/js_highConcurrency.md)
+	* 高并发下的数据安全
+		* 悲观锁思路
+		* FIFO队列思路
+		* 乐观锁思路
+	* 大规模网站架构的缓存机制和几何分形学
+		* 前端Cache机制
+		* Web负载均衡
+		* MySQL数据库内部缓存使用
+		* 异地部署（地理分布式）
 * [单元检测，代码检测]
 
 ### PART2
 * [面向对象]
-* [高阶函数，闭包，函数式编程]
-* [设计原则/模式]
+* [函数式编程](./context/part2/FunctionlProgramming.md)
+	* 高阶函数
+	* 闭包
+* [设计原则/模式](./context/part2/designDiscipline.md)
+	* 设计原则
+		* 单一职责原则
+		* 开闭原则
+		* 里氏替换原则
+		* 依赖倒置原则
+		* 接口隔离原则
+		* 迪米特法则
+		* S.O.L.I.D 代表什么?
 
 ### PART3
 * [JS插件使用]
