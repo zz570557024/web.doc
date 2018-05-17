@@ -75,7 +75,12 @@
 * [单元检测，代码检测]
 
 ### PART2
-* [面向对象]
+* [面向对象](./context/part2/ObjectOriented.md)
+	* 模块的放大模式
+	* 包装对象实例的方法
+		* Unicode
+	* 函数的定义方式有三种
+	* 接口模式
 * [函数式编程](./context/part2/FunctionlProgramming.md)
 	* 高阶函数
 	* 闭包
