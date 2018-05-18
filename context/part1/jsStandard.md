@@ -222,3 +222,168 @@ $ 表示字符串的结束位置
 * g修饰符表示全局匹配（global）
 * 默认情况下，正则对象区分字母的大小写，加上i修饰符以后表示忽略大小写（ignorecase）。
 * m修饰符表示多行模式（multiline），会修改^和$的行为。默认情况下（即不加m修饰符时），^和$匹配字符串的开始处和结尾处，加上m修饰符以后，^和$还会匹配行首和行尾，即^和$会识别换行符（\n）。
+
+### Promise
+
+为了更好的看清楚Promise的执行顺序，下面再次用一个简单的例子和运行结果来展示这个问题
+```bash
+"use strict";
+var Promise = require("bluebird");
+var first = function(){
+    console.log("first");
+};
+var second = function(){
+    console.log("second");
+}
+var third = function(){
+    console.log("third");
+}
+
+Promise.resolve().then(first).then(second).then(third);
+```
+#### 大白话讲解Promise
+
+Promise是一个构造函数，自己身上有all、reject、resolve这几个眼熟的方法，原型上有then、catch等同样很眼熟的方法
+
+Promise的构造函数接收一个参数，是函数，并且传入两个参数：resolve，reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。
+
+按照标准来讲，resolve是将Promise的状态置为fullfiled，reject是将Promise的状态置为rejected。
+
+我只是new了一个对象，并没有调用它，我们传进去的函数就已经执行了，这是需要注意的一个细节。所以我们用Promise的时候一般是包在一个函数中，在需要的时候去运行这个函数
+
+在我们包装好的函数最后，会return出Promise对象，也就是说，执行这个函数我们得到了一个Promise对象。还记得Promise对象上有then、catch方法吧？这就是强大之处了
+```bash
+function runAsync(){
+    var p = new Promise(function(resolve, reject){
+        # 做一些异步操作
+        setTimeout(function(){
+            console.log('执行完成');
+            resolve('随便什么数据');
+        }, 2000);
+    });
+    return p;            
+}
+runAsync().then(function(data){
+    console.log(data);
+    # 后面可以用传过来的数据做些其他操作
+    # ......
+});
+```
+在runAsync()的返回上直接调用then方法，then接收一个参数，是函数，并且会拿到我们在runAsync中调用resolve时传的的参数。
+Promise的正确场景是这样的：
+```bash
+runAsync1()
+.then(function(data){
+    console.log(data);
+    return runAsync2();
+})
+.then(function(data){
+    console.log(data);
+    return runAsync3();
+})
+.then(function(data){
+    console.log(data);
+});
+```
+#### all的用法
+
+Promise的all方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调。
+```bash
+Promise
+.all([runAsync1(), runAsync2(), runAsync3()])
+.then(function(results){
+    console.log(results);
+});
+```
+有了all，你就可以并行执行多个异步操作，并且在一个回调中处理所有的返回数据，是不是很酷？有一个场景是很适合用这个的，一些游戏类的素材比较多的应用，打开网页时，预先加载需要用到的各种资源如图片、flash以及各种静态文件。所有的都加载完后，我们再进行页面的初始化。
+
+all方法的效果实际上是「谁跑的慢，以谁为准执行回调」，那么相对的就有另一个方法「谁跑的快，以谁为准执行回调」，这就是race方法，这个词本来就是赛跑的意思。race的用法与all一样
+done、finally、success、fail等，这些是啥？这些并不在Promise标准中，而是我们自己实现的语法糖。
+
+本文中所有异步操作均以setTimeout为例子，之所以不使用ajax是为了避免引起混淆，因为谈起ajax，很多人的第一反应就是jquery的ajax，而jquery又有自己的Promise实现。如果你理解了原理，就知道使用setTimeout和使用ajax是一样的意思。说起jquery，我不得不吐槽一句，jquery的Promise实现太过垃圾，各种语法糖把人都搞蒙了，我认为Promise之所以没有全面普及和jquery有很大的关系。后面我们会细讲jquery。
+
+#### Promise/A+规范
+
+**Promise**
+promise 是一个拥有 then 方法的对象或函数，其行为符合本规范；
+
+>Promise 的状态
+
+一个 Promise 的当前状态必须为以下三种状态中的一种：等待态（Pending）、完成态（Fulfilled）和完成态（Rejected）。
+>等待态（Pending）
+
+* 处于等待态时，promise 需满足以下条件：可以迁移至完成态或拒绝态
+
+> 完成态（Fulfilled）
+
+* 处于完成态时，promise 需满足以下条件：
+	* 不能迁移至其他任何状态
+	* 必须拥有一个不可变的终值
+
+> 拒绝态（Rejected）
+
+* 处于拒绝态时，promise 需满足以下条件：
+	* 不能迁移至其他任何状态
+	* 必须拥有一个不可变的据因
+
+promise 的 then 方法接受两个参数：
+`promise.then(onFulfilled, onRejected)`
+
+**onFulfilled** 和 **onRejected** 都是可选参数。
+
+* 如果 onFulfilled 不是函数，其必须被忽略
+* 如果 onRejected 不是函数，其必须被忽略
+
+注：如果我们只想传onRejected而不想传onFulfilled，可以这么写：pormise.then(null, onRejected)
+多次调用
+
+then 方法可以被同一个 promise 调用多次
+* 当 promise 成功执行时，所有 onFulfilled 需按照其注册顺序依次回调
+* 当 promise 被拒绝执行时，所有的 onRejected 需按照其注册顺序依次回调
+
+注：这里解释了我们可以链式调用，promise.then().then().then()
+
+**返回**
+then 方法必须返回一个 promise 对象 注3
+`promise2 = promise1.then(onFulfilled, onRejected);`
+ 
+注：这就是我们能够进行链式调用的原因，因为then方法返回的还是一个promise对象。
+
+### jquery中的Promise
+
+ES6中的Promise以及Promise/A+规范，在Promise的知识体系中，jquery当然是必不可少的一环，所以本篇就来讲讲jquery中的Promise，也就是我们所知道的**Deferred对象**。
+```bash
+function runAsync(){
+    var def = $.Deferred();
+    # 做一些异步操作
+    setTimeout(function(){
+        console.log('执行完成');
+        def.resolve('随便什么数据');
+    }, 2000);
+    return def;
+}
+runAsync().then(function(data){
+    console.log(data)
+});
+```
+调用runAsync的时候将返回def对象，然后我们就可以.then来执行回调函数。
+```bash
+var d = runAsync();
+d.then(function(data){
+    console.log(data)
+});
+d.resolve('在外部结束');
+```
+比如你定义的一个异步操作并指定好回调函数，有可能被别人给提前结束掉，你的回调函数也就不能执行了。
+
+其实他就是一个返回受限Deferred对象的方法，与Promise规范没有任何关系，仅仅是名字叫做promise罢了。虽然名字奇葩，但是推荐使用。
+
+#### then的链式调用
+
+既然Deferred也是Promise规范的实现者，那么其他特性也必须是支持的。
+
+#### ajax与Deferred的关系
+
+jquery的ajax返回一个受限的Deferred对象，还记得受限的Deferred对象吧，也就是没有resolve方法和reject方法，不能从外部改变状态。想想也是，你发一个ajax请求，别人从其他地方给你取消掉了，也是受不了的。
+
+#### success、error与complete

@@ -11,6 +11,11 @@
 	* console对象
 	* 命令行 API
 	* 正则表达式
+	* Promise
+		* 大白话讲解Promise
+		* all的用法
+		* Promise/A+规范
+		* jquery中的Promise
 * [ES6相关](./context/part1/es6.md)
 	* 变量
 		* Let & Var
@@ -60,7 +65,16 @@
 		* History 对象
 		* Cookie
 		* AJAX
-* [webSocket]
+* [webSocket](./context/part1/webSocket.md)
+	* 接口
+		* WebSocket
+		* CloseEvent
+		* MessageEvent
+	* 流
+	* 阻塞
+	* 把非阻塞I/O作为头等大事：Node
+	* 原生无阻塞：Go
+	* 性能评测
 * [Node.js](./context/part1/node.js.md)
 	* Node基础
 		* 异常处理
@@ -116,7 +130,7 @@
 	* 包装对象实例的方法
 		* Unicode
 	* 函数的定义方式有三种
-	* 接口模式
+	* *接口模式*
 * [函数式编程](./context/part2/FunctionlProgramming.md)
 	* 高阶函数
 	* 闭包
@@ -128,14 +142,22 @@
 		* 依赖倒置原则
 		* 接口隔离原则
 		* 迪米特法则
-		* S.O.L.I.D 代表什么?
+		* *S.O.L.I.D 代表什么?*
 
 ### PART3
 * [JS插件使用]
 * [npm](./context/part3/npm.md)
 	* 基础
 	* 开发NPM
-* [react]
+* [react](./context/part3/react.md)
+	* 简介
+	* JSX
+	* 组件&Props
+		* 函数定义/类定义组件
+		* 组件渲染
+	* State & 生命周期
+	* 数据自顶向下流动
+	* *框架*
 * [mpvue]
 * [网页模板引擎]
 * [JS GAME]
