@@ -122,7 +122,13 @@
 		* Web负载均衡
 		* MySQL数据库内部缓存使用
 		* 异地部署（地理分布式）
-* [单元检测，代码检测]
+* [前端测试](./context/part1/codeDetection.md)
+	* ESLint
+	* Karma
+	* Nightwatch
+	* E2E
+	* Selenium/PhantomJS
+	* 其它
 
 ### PART2
 * [面向对象](./context/part2/ObjectOriented.md)
@@ -168,49 +174,7 @@
 	* MVP
 	* MVVM
 * [前端文档/工具链接](./context/part4/js_tool_link.md)
-	<!-- * JS基础
-		* ES5
-		* ES6
-		* JS规范
-		* JsStory
-	* JS设计原则/模式
-	* 前端基础
-		* GIT
-		* 网络协议
-	* 前端库/框架
-		* Angular
-		* React
-		* Vue
-	* 代码检测
-	* 服务端Node.js
-		* Express
-		* Koa2
-	* CSS相关
-		* PostCss
-	* 微信小程序开发
-		* 官方文档
-		* 小程序框架
-			* WEPY
-			* mpvue
-		* 小程序UI
-		* 其他
-	* Hybrid开发
-		* Weex
-		* Ionic
-	* 工具/插件
-		* npm
-		* Babel
-		* webpack
-		* TS
-		* CreateJS
-		* others
-	* 工作面试
-	* 主页博客
-	* 拓展学习
-		* Python
-		* Markdown
-		* 自然语言机器学习
-		* 其它 -->
 * [微信小程序]
 * [SEO搜索引擎优化]
-* [其它]
+* [其它](./context/part4/JSnote.md)
+	* 浏览器优化
