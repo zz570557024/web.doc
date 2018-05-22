@@ -275,6 +275,29 @@ request.files用于获取上传的文件。
 
 Koa是一个类似于Express的Web开发框架，创始人也是同一个人。它的主要特点是，使用了ES6的Generator函数，进行了架构的重新设计。也就是说，Koa的原理和内部结构很像Express，但是语法和内部结构进行了升级。
 
+在koa里定义的middleware均为generator function（包括内置在顶端的respond），这是为了能从任意middleware中容易地切换到其它middleware里（如果你是前端程序员，可以理解为浏览器捕获事件的capture和propagation过程，如果你是python程序员，可以理解为jungle的middleware机制，如果你是Java程序员，这种方式则是典型的切面编程）。
+
+在koa中yield的使用是在co，而co则是包装了generator/yield & Promise以模拟async/await，提供了一个更高层次的异步语法抽象。
+koa通过上文的方式「深入」->「浅出」，最终在顶层的respond middleware里send response。
+
+*注：#thunk是co先前版本处理异步函数的方式，通过thunk可以将异步函数封装成curry，传入普通参数后形成仅需要callback参数的偏函数，以此简化callback调用代码（目前co中的thunk偏函数已经被#无情地Promise化了）。*
+
+参数ctx是由koa传入的封装了request和response的变量，我们可以通过它访问request和response，next是koa传入的将要处理的下一个异步函数。
+
+我们可以对ctx操作，并设置返回内容。但是为什么要调用await next()？
+
+原因是koa把很多async函数组成一个处理链，每个async函数都可以做一些自己的事情，然后用await next()来调用下一个async函数。我们把每个async函数称为middleware，这些middleware可以组合起来，完成很多有用的功能。
+middleware的顺序很重要，也就是调用app.use()的顺序决定了middleware的顺序。
+
+此外，如果一个middleware没有调用await next()，会怎么办？答案是后续的middleware将不再执行了。这种情况也很常见，例如，一个检测用户权限的middleware可以决定是否继续处理请求，还是直接返回403错误：
+post请求通常会发送一个表单，或者JSON，它作为request的body发送，但无论是Node.js提供的原始request对象，还是koa提供的request对象，都不提供解析request的body的功能！
+
+这是generator的实际意义，在值的使用者和值的生产者之间，建立效益更高的依赖，规避效益不高的依赖。
+
+Generator 函数从暂停状态到恢复运行，它的上下文状态（context）是不变的。通过next方法的参数，就有办法在 Generator 函数开始运行之后，继续向函数体内部注入值。也就是说，可以在 Generator 函数运行的不同阶段，从外部向内部注入不同的值，从而调整函数行为。这个用处在其用来实现 async/await 至关重要。
+
+async await就是Generator自动执行的语法糖
+
 ### 中间件
 
 Koa的中间件很像Express的中间件，也是对HTTP请求进行处理的函数，但是必须是一个Generator函数。而且，Koa的中间件是一个级联式（Cascading）的结构，也就是说，属于是层层调用，第一个中间件调用第二个中间件，第二个调用第三个，以此类推。上游的中间件必须等到下游的中间件返回结果，才会继续执行，这点很像递归。

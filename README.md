@@ -11,6 +11,7 @@
 	* JS对象
 	* 队列与堆栈
 	* JSON对象
+	* JS语法
 	* console对象
 	* 命令行 API
 	* 正则表达式
@@ -138,6 +139,8 @@
 		* x-www-form-urlencoded
 		* Cookie/Session
 		* Filter拦截
+		* Ping
+		* DOS命令
 	* package.json文件
 	* JavaScript
 		* 数据库操作
@@ -169,12 +172,20 @@
 		* 接口隔离原则
 		* 迪米特法则
 		* *S.O.L.I.D 代表什么?*
+	* 设计模式
+		* 装饰器模式
 
 ### PART3
-* [JS插件使用]
 * [npm](./context/part3/npm.md)
 	* 基础
 	* 开发NPM
+* [Webpack](./context/part3/webpack.md)
+	* 入口(Entry)
+	* 出口(Output)
+	* Loader
+	* 插件(Plugins)
+	* 使用 Loader
+	* 支持的模块类型
 * [react](./context/part3/react.md)
 	* 简介
 	* JSX
@@ -184,17 +195,18 @@
 	* State & 生命周期
 	* 数据自顶向下流动
 	* *框架*
-* [mpvue]
-* [网页模板引擎]
-* [JS GAME]
+* [网页模板引擎](./context/part3/HTMLModel.md)
+* [Tools](./context/part3/plugin.md)
+	* Grunt
+	* Redux
 
 ### PART4
 * [前端架构](./context/part4/webFramework.md)
 	* MVC
 	* MVP
 	* MVVM
+	* *B/S架构*
+	* *C/S架构*
 * [前端文档/工具链接](./context/part4/js_tool_link.md)
-* [微信小程序]
-* [SEO搜索引擎优化]
 * [其它](./context/part4/JSnote.md)
 	* 浏览器环境优化

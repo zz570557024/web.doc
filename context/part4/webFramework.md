@@ -9,6 +9,14 @@
 
 ## MVC(Model-View-Controller)
 
+* MVC：Model-View-Controller，中文名“模型-视图-控制器”。
+
+异步函数是C：Controller，Controller负责业务逻辑，比如检查用户名是否存在，取出用户信息等等；
+
+包含变量{{ name }}的模板就是V：View，View负责显示逻辑，通过简单地替换一些变量，View最终输出的就是用户看到的HTML。
+
+MVC中的Model在哪？Model是用来传给View的，这样View在替换变量的时候，就可以从Model中取出相应的数据。
+
 * 界面被分到了View，数据分到了载体Model上由Model“携带”，业务集中在Controller中，而推动业务的事件由用户与View交互，通过View向Controller发动。
 * `MVC的其中一个缺点便是没有明确的定义，所以不同的实现（比如Struts和http://ASP.NET MVC）细节上都是不一样的。`
 * MVC的一般流程是这样的：View（界面）触发事件--》Controller（业务）处理了业务，然后触发了数据更新--》不知道谁更新了Model的数据--》Model（带着数据）回到了View--》View更新数据
@@ -26,3 +34,17 @@
 > 会有更强大的浏览器
 > 会有更强大的JavaScript或者框架
 > 会有更加适合的模式
+
+## B/S架构
+
+B/S结构即浏览器和服务器结构。用户工作界面是通过WWW浏览器来实现，极少部分事务逻辑在前端(Browser)实现，但是主要事务逻辑在服务器端(Server)实现，形成所谓三层3-tier结构。
+
+B/S结构是WEB兴起后的一种网络结构模式，WEB浏览器是客户端最主要的应用软件。这种模式统一了客户端，将系统功能实现的核心部分集中到服务器上，简化了系统的开发、维护和使用。客户机上只要安装一个浏览器（Browser），如Netscape Navigator或Internet Explorer，服务器安装Oracle、Sybase、Informix或 SQL Server等数据库。浏览器通过Web Server同数据库进行数据交互。 这样就大大简化了客户端电脑载荷，减轻了系统维护与升级的成本和工作量，降低了用户的总体成本(TCO)。
+
+## C/S架构
+
+C/S又称Client/Server或客户/
+
+**服务器模式**。服务器通常采用高性能的PC、工作站或小型机，并采用大型数据库系统，如Oracle、Sybase、Informix或 SQL Server。客户端需要安装专用的客户端软件。
+
+asp.net确切的说并不是一张语言，是一种服务器端的web框架，运行于iis下， 可以使用C#、VBScript等语言来进行开发， 主要用于构建web动态网站的逻辑处理！
