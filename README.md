@@ -4,9 +4,12 @@
 
 ### PART1
 * [JS基础相关](./context/part1/jsStandard.md)
-	* JS是一种弱类型动态语言
+	* JS基础
 	* JS语句
 	* JS表达式
+	* 数组的push方法
+	* JS对象
+	* 队列与堆栈
 	* JSON对象
 	* console对象
 	* 命令行 API
@@ -129,6 +132,23 @@
 	* E2E
 	* Selenium/PhantomJS
 	* 其它
+* [其它](./context/part1/http.md)
+	* HTTP
+		* form-data
+		* x-www-form-urlencoded
+		* Cookie/Session
+		* Filter拦截
+	* package.json文件
+	* JavaScript
+		* 数据库操作
+		* 事件驱动和非阻塞式设计
+		* 异步编程
+			* 回调函数
+			* 事件监听
+			* 发布/订阅
+			* Promises对象
+			* Generator
+			* 异常处理
 
 ### PART2
 * [面向对象](./context/part2/ObjectOriented.md)
@@ -177,4 +197,4 @@
 * [微信小程序]
 * [SEO搜索引擎优化]
 * [其它](./context/part4/JSnote.md)
-	* 浏览器优化
+	* 浏览器环境优化
